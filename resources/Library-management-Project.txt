@@ -1,0 +1,130 @@
+3.3 Features | Synopsys for Library Management System Project
+The proposed Library Management System (LMS) is designed to simplify the day-to-day activities of a library, providing features for both users and administrators.
+-------------------------------------------------------------------------------------
+For Users:
+We will have following features for a User:
+
+New User Registration:
+This feature allows new users (students, teachers, etc.) to sign up for the system by providing the necessary details.
+
+Student Login:
+This feature Provides authenticated access for registered users to use the system.
+
+Search Book:
+This feature allow users to search for books based on criteria such as book ID, book name, or author name, enhancing the ease of locating desired materials.
+
+Issue Book:
+This feature allow users in borrowing books from the library by recording the transaction and updating the availability status.
+
+Return Book:
+This feature allows users to return books either before the due date or after the specified time with a late fine, ensuring proper management of borrowed materials.
+-------------------------------------------------------------------------------------
+For Admin:
+
+Record Library Activities:
+This feature allows librarians to enter various records into the system, such as book issuances, returns, and non-availability of books.
+Manage Books:
+
+This feature allow librarians to keep track of the library's books by adding new books or removing them.
+
+Manage Student:
+This feature allow librarians to keep track of number of students and their details.
+View Issued Books:
+This feature allows librarians to view all Issued books with their status.
+
+Defaulter List:
+This feature allows librarians to show the details of the student who did not return the books before the deadline.
+
+Issue Book:
+This feature allow users in borrowing books from the library by recording the transaction and updating the availability status.
+--------------------------------------------------------------------------------------
+Authentication and Authorization:
+The system implements a secure login mechanism for users, and administrators. The admin has the authority to manage user access and ensure data integrity.
+
+--------------------------------------------------------------------------------------
+
+The LMS must have the following functional requirements:
+
+The LMS should store all information about librarian and other users (student students and faculty members) like their login info , books issued etc.
+The LMS should store all information about the books and users in two separated databases.
+The LMS should allow searching books / journals by author, title , keywords or availability.
+The LMS should generate request's reports for librarian , upon which he/she could make decisions about accepting / rejecting the requests.
+The LMS should provide the module to Issue or return the books.
+The LMS should provide modules to search request and renew books .
+The Admin must be able to add/remove/manage books or users.
+--------------------------------------------------------------------------------------
+
+Step 1: Creation of Login page Module:
+
+Functionalities of this page:
+You Can show some important details on the landing page.
+Existing Users will be able to login through user login page.
+Admins can also login using admin login form.
+Users will be able to signup using above signup button.
+These will be our main functionalities of login page.
+
+Step 2: Creation of User Dashboard Module:
+
+Functionalities of this page:
+Page will show the username and email id .
+User can view Issued books and its count.
+User can view and edit its profile as well.
+Users can change his password also.
+These will be one button for logging out from this page.
+
+Step 3: Creation of Admin Dashboard Module:
+
+Functionalities of this page:
+Page will show the username and email id of admin.
+Admin can view and edit his profile.
+Dashboard will show the Below features:
+Registered Users
+Details of available books.
+Details of all book's categories.
+Details of authors.
+Issued books details.
+Managerial features:
+Admin can add or manage existing books.
+Admin can add or manage categories of books.
+Admin can add or manage the authors.
+One Important feature is Admin can Issue Book to any user.
+
+Step 4: Creation of Add/Manage Book Module:
+
+Features:
+Admin can add a new book using its details.
+Admin can edit the details of existing books.
+All changes will be reflected on our SQL database.
+
+Step 5: Creation of Add/Manage Book Category Module:
+
+Features:
+Admin can add a new book category using its details.
+Admin can edit the existing book category.
+All changes will be reflected on our SQL database.
+Similarly we can add and manage the author details as well.
+
+Step 6: Creation of Issue Book Module:
+
+Features:
+Admin can use this feature to Issue any book from library to the user.
+Database will store the student id and book details for security.
+
+--------------------------------------------------------------------------------------
+
+				Creation of project
+Step 1->
+
+Single page → index.html will have both User and Admin login tabs.
+
+Signup form will be on the same page, switchable via toggle or tab.
+
+Important details area will be shown on the landing section (you’ll give me the text).
+
+"Remember me" checkbox & Forgot password link included.
+
+Basic client-side validation for required fields, email format, and password length.
+
+Bootstrap 5 + custom CSS for styling.
+
+	-----------------------------------------------------------------

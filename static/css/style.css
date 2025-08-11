@@ -49,3 +49,9 @@ a{
         border-bottom-right-radius: 12px;
     }
 }
+
+.forgot-card{
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+    padding: 1.8rem;
+}

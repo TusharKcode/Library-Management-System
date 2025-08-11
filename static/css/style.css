@@ -1,0 +1,17 @@
+.left-section{
+    background: linear-gradient(135deg, #3a7bd5, #3a6073);
+    padding: 30px;
+}
+
+.card{
+    border-radius: 12px;
+}
+
+#signUpForm{
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from{ opacity: 0; transform: translateY(-10px); }
+    to{ opacity: 1; transform: translateY(0); }
+}

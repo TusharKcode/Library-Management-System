@@ -112,7 +112,7 @@ Database will store the student id and book details for security.
 
 --------------------------------------------------------------------------------------
 
-				Creation of project
+				Creation of Login Window/Form
 Step 1->
 
 Single page → index.html will have both User and Admin login tabs.
@@ -128,3 +128,6 @@ Basic client-side validation for required fields, email format, and password len
 Bootstrap 5 + custom CSS for styling.
 
 	-----------------------------------------------------------------
+
+				Creation of Dashboard
+

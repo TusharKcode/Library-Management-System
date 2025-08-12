@@ -55,3 +55,12 @@ a{
     box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
     padding: 1.8rem;
 }
+
+.hover-card{
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

@@ -38,3 +38,36 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 });
+
+document.getElementById('forgotForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    let emailInput = document.getElementById('forgotEmail').value.trim();
+    let alertBox = document.getElementById('forgotAlert');
+
+    if(emailInput === "" || !emailInput.include('@')){
+        alertBox.innerHTML = '<div class="alert alert-danger">Please Enter a valid email address.</div>';
+    } else{
+        alertBox.innerHTML = '<div class="alert alert-success">Reset link sent. Redirecting....</div>';
+        setTimeout(() => {
+            window.location.href = "/loginForm/resetPassword.html";
+        }, 1500);
+    }
+});
+
+document.getElementById('resetForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    let pass1 = document.getElementById('newPassword').value.trim();
+    let pass2 = document.getElementById('confirmPassword').value.trim();
+    let alertBox = document.getElementById('resetAlert');
+
+    if(pass1 === "" || pass2 === ""){
+        alertBox.innerHTML = '<div class="alert alert-danger">Please fill in all fields</div>';
+    } else if(pass1 != pass2){
+        alertBox.innerHTML = '<div class="alert alert-danger">Password do not match.</div>'
+    } else{
+        alertBox.innerHTML = '<div class="alert alert-success">Password successfully reset. Redirecting to login....</div>';
+        setTimeout(() => {
+            window.location.href = "/loginForm/loginForm.html";
+        }, 1500);
+    }
+});

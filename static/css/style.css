@@ -65,23 +65,23 @@ a{
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+.navbar-brand{
+    font-size: 1.25rem;
+}
+
+.navbar-nav .nav-link{
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+}
+
 .navbar-nav .nav-link i{
-    margin-right: 6px;
+    vertical-align: middle;
 }
 
-.dropdown-menu i{
-    margin-right: 8px;
+.navbar .dropdown-menu{
+    min-width: 200px;
 }
 
-.navbar img.rounded-circle{
-    object-fit: cover;
-    border: 2px solid white;
-}
-
-.navbar .d-flex span{
-    font-size: 0.9rem;
-}
-
-.navbar .btn{
-    margin-left: 10px;
+.navbar img{
+   object-fit: cover;
 }

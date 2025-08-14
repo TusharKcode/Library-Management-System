@@ -79,20 +79,110 @@
         </div>
     </nav>
 
+    <!--Profile Section-->
     <div class="container mt-4">
-        <div class="card p-4 shadow">
-            <h4 class="mb-3">User Profile</h4>
-            <p><strong>Name:</strong> JohnDoe</p>
-            <p><strong>Email:</strong> johndoe@gmail.com</p>
-            <p><strong>Username:</strong> johnd</p>
-            <p><strong>Member since:</strong> Jan 2025</p>
+        <div class="row g-4">
+            <!--Personal Info-->
+            <div class="col-md-4">
+                <div class="card shadow-sm p-3 text-center">
+                    <img src="" alt="User Photo" class="rounded-circle mx-auto mb-3 border border-3" width="120" height="120">
+                    <button class="btn btn-outline-primary btn-sm mt-2 w-100">
+                        <i class="bi bi-upload"></i> Upload Profile Picture
+                    </button>
+                    <br>
+                    <h5 class="fw-bold">John Doe</h5>
+                    <p class="text-muted">@johnd</p>
+                    <p><i class="bi bi-envelope me-1"></i> john@example.com</p>
+                    <p><i class="bi bi-telephone me-1"></i> +91-8765432876</p>
+                    <p><i class="bi bi-calendar3 me-1"></i> Joined: Jan 2025</p>
+                    <p><i class="bi bi-geo-alt me-1"></i> New Delhi, India</p>
+                    
+                </div>
+            </div>
+
+            <!--Library Stats-->
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4">
+                    <h5 class="fw-bold mb-3">Library Statistics</h5>
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="border rounded p-3 bg-light">
+                                <h4 class="text-primary">3</h4>
+                                <p>Issued Books</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border rounded p-3 bg-light">
+                                <h4 class="text-primary">12</h4>
+                                <p>Total Borrowed</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="border rounded p-3 bg-light">
+                                <h4 class="text-primary">₹50</h4>
+                                <p>Pending Fine</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h6 class="fw-bold mt-3">Membership</h6>
+                    <p>Type: <span class="badge bg-primary">Premium</span></p>
+
+                    <div class="mt-4">
+                        <a href="/dashboard/editProfile.html" class="btn btn-primary me-2">
+                            <i class="bi bi-pencil-square me-1"></i> Edit Profile
+                        </a>
+                        <a href="/dashboard/changePassword.html" class="btn btn-warning me-2">
+                            <i class="bi bi-lock me-1"></i> Change Password
+                        </a>
+                        <button class="btn btn-success">
+                            <i class="bi bi-download me-1"></i> Download Borrow History
+                        </button>
+                    </div>
+
+                    <hr>
+
+                    <h6 class="fw-bold mt-3">Current Borrowed Books</h6>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Book Title</th>
+                                    <th>Author</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>The Great Gatsby</td>
+                                    <td>F. Scott FItzgerald</td>
+                                    <td>20 Aug 2025</td>
+                                    <td><span class="badge bg-warning text-dark">Due Soon</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>1984</td>
+                                    <td>George Orwell</td>
+                                    <td>25 Aug 2025</td>
+                                    <td><span class="badge bg-success">On Time</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </div>
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-     <script src=""></script>
      
 </body>
 </html>

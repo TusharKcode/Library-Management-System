@@ -93,7 +93,9 @@
                                 <th scope="col">Author</th>
                                 <th scope="col">Issued Date</th>
                                 <th scope="col">Due Date</th>
+                                <th scope="col">Fine (₹)</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,7 +105,13 @@
                                 <td>F. Scott Fitzgerald</td>
                                 <td>05 Aug 2025</td>
                                 <td>20 Aug 2025</td>
+                                <td>0</td>
                                 <td><span class="badge bg-success">On Time</span></td>
+                                <td>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-arrow-left"></i> Request Return
+                                    </button>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
@@ -111,7 +119,13 @@
                                 <td>George Orwell</td>
                                 <td>05 Aug 2025</td>
                                 <td>20 Aug 2025</td>
+                                <td>20</td>
                                 <td><span class="badge bg-warning text-dark">Due Soon</span></td>
+                                <td>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-arrow-left"></i> Request Return
+                                    </button>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -119,10 +133,19 @@
                                 <td>Harper Lee</td>
                                 <td>05 Aug 2025</td>
                                 <td>20 Aug 2025</td>
+                                <td>50</td>
                                 <td><span class="badge bg-danger">Overdue</span></td>
+                                <td>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-arrow-left"></i> Request Return
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="alert alert-info mt-3">
+                    <i class="bi bi-info-circle"></i> Please return books on time to avoid additional fines. You can requesta return online, but physical submission at the library is required.
                 </div>
                 <a href="/dashboard/userDashboard.html" class="btn btn-outline-secondary mt-3">
                     <i class="bi bi-arrow-left me-1"> Back to Dashboard</i>

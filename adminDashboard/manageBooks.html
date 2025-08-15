@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Books</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-2">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="/adminDashboard/adminDashboard.html">
+                <i class="bi bi-book-half me-1"></i> LMS Admin
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="adminNav">
+                <ul class="navbar-nav me-auto mb-2 m-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/adminDashboard/adminDashboard.html"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-book me-1"></i> Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-people me-1"></i> Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-journal-check me-1"></i> Issued Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-list-check me-1"></i> Defaulter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-upc-scan me-1"></i> Issue Book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-graph-up me-1"></i> Reports</a></li>
+                </ul>
+<!--Admin info-->
+                <div class="d-flex align-items-center text-white">
+                    <img src="" alt="Avatar" class="rounded-circle me-2 border border-light" width="35" height="35">
+                    <span class="fw-semibold">Admin Name</span>
+                    <span class="mx-1">|</span>
+                    <span class="text-white-50">admin@example.com</span>
+                    <a href="/loginForm/loginForm.html" class="btn btn-outline-light btn-sm ms-3 px-3">
+                        <i class="bi bi-box-arrow-right me-1"></i> Logout
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!--Main Content-->
+    <div class="container my-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4><i class="bi bi-book me-2"></i>Manage Books</h4>
+            <a href="#" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i> Add New Book</a>
+        </div>
+    </div>    
+    
+    <!--Search Bar-->
+    <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Search by title, author or category...">
+    </div>
+    
+    <!--Books Table-->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Copies</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>The Great Gasby</td>
+                            <td>F. Scott Fitzgerald</td>
+                            <td>Fiction</td>
+                            <td>5</td>
+                            <td><span class="badge bg-success">Available</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>1984</td>
+                            <td>George Orwell</td>
+                            <td>Dystopian</td>
+                            <td>0</td>
+                            <td><span class="badge bg-danger">Unavailable</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Clean Code</td>
+                            <td>Robert C. Martin</td>
+                            <td>Programming</td>
+                            <td>3</td>
+                            <td><span class="badge bg-success">Available</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="/adminDashboard/adminDashboard.html" class="btn btn-outline-secondary mt-3">
+            <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
+        </a>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src=""></script>
+</body>
+</html>

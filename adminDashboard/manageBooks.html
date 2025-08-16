@@ -99,67 +99,27 @@
         <input type="text" class="form-control" placeholder="Search by title, author or category...">
     </div>
     
-    <!--Books Table-->
-    <div class="card shadow-sm border-0">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Category</th>
-                            <th>Copies</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>The Great Gasby</td>
-                            <td>F. Scott Fitzgerald</td>
-                            <td>Fiction</td>
-                            <td>5</td>
-                            <td><span class="badge bg-success">Available</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>1984</td>
-                            <td>George Orwell</td>
-                            <td>Dystopian</td>
-                            <td>0</td>
-                            <td><span class="badge bg-danger">Unavailable</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Clean Code</td>
-                            <td>Robert C. Martin</td>
-                            <td>Programming</td>
-                            <td>3</td>
-                            <td><span class="badge bg-success">Available</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!--Books Grid-->
+    <div class="row g-3">
+        <!--Books Card-->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm" style="min-height: 300px; max-height: 360px;">
+                <img src="/resources/bookimg.jpeg" alt="Book Cover" class="card-img-top book-img" width="100" height="100">
+                <div class="card-body text-center">
+                    <h6 class="card-title text-truncate">The Great Gatsby</h6>
+                    <p class="card-text text-muted small">F. Scott Fitzgerald</p>
+                    <span class="badge bg-secondary">Fiction</span>
+                    <span class="badge bg-success">Available (5)</span>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                </div>
             </div>
         </div>
-        <a href="/adminDashboard/adminDashboard.html" class="btn btn-outline-secondary mt-3">
-            <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
-        </a>
+
     </div>
+
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

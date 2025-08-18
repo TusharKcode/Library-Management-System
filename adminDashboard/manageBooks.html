@@ -410,21 +410,22 @@
     <script>
         
         const searchBox = document.getElementById("searchBox");
-        const sortSelect = document.querySelector("select.from-select");
+        const sortSelect = document.querySelector("select.form-select");
         const checkboxes = document.querySelectorAll(".sidebar input[type=checkbox]");
         const pagination = document.querySelector(".pagination");
+        const bookGrid = document.querySelector(".row.g-3");
 
         let cards = Array.from(document.querySelectorAll(".book-card"));
-        const cardsPerPage = 6;
+        const cardsPerPage = 8;
         let currentPage = 1;
 
         function applyFilters(){
             let filterText = searchBox.value.toLowerCase();
-            let activateCategories = Array.from(checkboxes)
-                .filter(cb => cb.checked && (cb.nextSibling.textContent.trim() === "Fiction" || cb.nextSibling.textContent.trim() === "Non-Fiction" || cb.nextSibling.textContent.trim() === "Science"))
+            let activeCategories = Array.from(checkboxes)
+                .filter(cb => cb.checked && ["Fiction","Non-Fiction","Science"].includes(cb.nextSibling.textContent.trim()))
                 .map(cb => cb.nextSibling.textContent.trim());
             let activeStatus = Array.from(checkboxes)
-                .filter(cb => cb.checked && (cb.nextSibling.textContent.trim() === "Available" || cb.nextSibling.textContent.trim() === "Unavailable"))
+                .filter(cb => cb.checked && ["Available","Unavailable"].includes(cb.nextSibling.textContent.trim()))
                 .map(cb => cb.nextSibling.textContent.trim());
 
             cards.forEach(card => {
@@ -433,7 +434,7 @@
                 let status = card.querySelector(".badge.bg-success, .badge.bg-danger")?.innerText;
                 
                 let matchesText = text.includes(filterText);
-                let matchesCategory = activateCategories.length? activateCategories.includes(category) : true;
+                let matchesCategory = activeCategories.length? activeCategories.includes(category) : true;
                 let matchesStatus = activeStatus.length? activeStatus.includes(status) : true;
                 
                 card.style.display = (matchesText && matchesCategory && matchesStatus) ? "" : "none";
@@ -444,7 +445,6 @@
 
         function applySorting(){
             let option = sortSelect.value;
-            let grid = document.querySelector(".row.g-3");
             let visibleCards = cards.filter(c => c.style.display != "none");
 
             visibleCards.sort((a,b) => {
@@ -457,13 +457,13 @@
                 let aStatus = a.querySelector(".badge.bg-success, .badge.bg-danger")?.innerText.toLowerCase();
                 let bStatus = b.querySelector(".badge.bg-success, .badge.bg-danger")?.innerText.toLowerCase();
 
-                if(option === "Title") return aTitle.localCompare(bTitle);
-                if(option === "Author") return aAuthor.localCompare(bAuthor);
-                if(option === "Category") return aCategory.localCompare(bCategory);
-                if(option === "Availability") return aStatus.localCompare(bStatus);
+                if(option === "Title") return aTitle.localeCompare(bTitle);
+                if(option === "Author") return aAuthor.localeCompare(bAuthor);
+                if(option === "Category") return aCategory.localeCompare(bCategory);
+                if(option === "Availability") return aStatus.localeCompare(bStatus);
                 return 0;
             });
-            visibleCards.forEach(card => grid.appendChild(card.parentElement));
+            visibleCards.forEach(card => bookGrid.appendChild(card.parentElement));
             paginate();
         }
 
@@ -496,6 +496,68 @@
             next.onclick = e => { e.preventDefault(); if(currentPage < totalPages){ currentPage++; paginate(); } };
             pagination.appendChild(next);
         }
+
+        const addBookForm = document.querySelector("#addBookModal form");
+        addBookForm.addEventListener("submit", function(e){
+            e.preventDefault();
+
+            let title = addBookForm.querySelector("input[type=text]:nth-of-type(1)").value;
+            let author = addBookForm.querySelector("input[type=text]:nth-of-type(2)").value;
+            let category = addBookForm.querySelector("input[type=text]:nth-of-type(3)").value;
+            let status = addBookForm.querySelector("select").value;
+            let fileInput = addBookForm.querySelector("input[type=file]");
+            let imgSrc = "/resources/TheGreatGatsby.jpg";
+
+            if(fileInput.files[0]){
+                imgSrc = URL.createObjectURL(fileInput.files[0]);
+            }
+
+            let col = document.createElement("div");
+            col.className = "col-lg-3 col-md-4 col-sm-6";
+            col.innerHTML = `
+                <div class="card book-card h-100 shadow-sm">
+                    <img src="${imgSrc}" alt="Book Cover" class="book-img">
+                    <div class="card-body">
+                        <span class="badge bg-secondary">${category}</span>
+                        <span class="badge ${status === "Available" ? "bg-success" : "bg-danger"}">${status}</span>
+                        <h6 class="card-title">${title}</h6>
+                        <p class="text-muted small">${author}</p> 
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary btn-wide"><i class="bi bi-book"></i> Read</button>
+                        <button class="btn btn-sm btn-success btn-wide"><i class="bi bi-journal"></i> Journal</button>
+                        <button class="btn btn-sm btn-warning btn-icon"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-sm btn-danger btn-icon"><i class="bi bi-trash"></i></button>
+                    </div>            
+                </div>
+            `;
+            bookGrid.appendChild(col);
+
+            let newCard = document.querySelector(".book-card");
+            cards.push(newCard);
+
+            //delete handler for new card
+            col.querySelector(".delete-btn").addEventListener("click", () => {
+                col.remove();
+                cards = cards.filter(c => c !== newCard);
+                paginate();
+            });
+
+            addBookForm.reset();
+            let modal = bootstrap.Modal.getInstance(document.getElementById("addBookModal"));
+            modal.hide();
+            applyFilters();
+        });
+
+        //delete existing cards
+        document.querySelectorAll(".delete-btn").forEach(btn => {
+            btn.addEventListener("click", function(){
+                let card = this.closest(".col-lg-3, .col-md-4, .col-sm-6");
+                card.remove();
+                cards = Array.from(document.querySelectorAll(".book-card"));
+                paginate();
+            });
+        });
 
         searchBox.addEventListener("keyup", applyFilters);
         sortSelect.addEventListener("change", applySorting);

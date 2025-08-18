@@ -290,6 +290,74 @@
                                 <button class="btn btn-sm btn-danger btn-icon"><i class="bi bi-trash"></i></button>
                             </div>
                         </div>  
+                    </div>
+                    <div class=" col-lg-3 col-md-4 col-sm-6">
+                        <div class="card book-card h-100 shadow-sm">
+                            <img src="/resources/TheGreatGatsby.jpg" alt="Book Cover" class="book-img">
+                            <div class="card-body">
+                                <span class="badge bg-secondary">Fiction</span>
+                                <span class="badge bg-success">Available</span>
+                                <h6 class="card-title">The Great Gatsby</h6>
+                                <p class="text-muted small">F. Scott Fitzgerald</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary btn-wide"><i class="bi bi-book"></i> Read</button>
+                                <button class="btn btn-sm btn-success btn-wide"><i class="bi bi-journal"></i> Journal</button>
+                                <button class="btn btn-sm btn-warning btn-icon"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger btn-icon"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class=" col-lg-3 col-md-4 col-sm-6">
+                        <div class="card book-card h-100 shadow-sm">
+                            <img src="/resources/TheGreatGatsby.jpg" alt="Book Cover" class="book-img">
+                            <div class="card-body">
+                                <span class="badge bg-secondary">Fiction</span>
+                                <span class="badge bg-success">Available</span>
+                                <h6 class="card-title">The Great Gatsby</h6>
+                                <p class="text-muted small">F. Scott Fitzgerald</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary btn-wide"><i class="bi bi-book"></i> Read</button>
+                                <button class="btn btn-sm btn-success btn-wide"><i class="bi bi-journal"></i> Journal</button>
+                                <button class="btn btn-sm btn-warning btn-icon"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger btn-icon"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class=" col-lg-3 col-md-4 col-sm-6">
+                        <div class="card book-card h-100 shadow-sm">
+                            <img src="/resources/TheGreatGatsby.jpg" alt="Book Cover" class="book-img">
+                            <div class="card-body">
+                                <span class="badge bg-secondary">Fiction</span>
+                                <span class="badge bg-success">Available</span>
+                                <h6 class="card-title">The Great Gatsby</h6>
+                                <p class="text-muted small">F. Scott Fitzgerald</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary btn-wide"><i class="bi bi-book"></i> Read</button>
+                                <button class="btn btn-sm btn-success btn-wide"><i class="bi bi-journal"></i> Journal</button>
+                                <button class="btn btn-sm btn-warning btn-icon"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger btn-icon"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class=" col-lg-3 col-md-4 col-sm-6">
+                        <div class="card book-card h-100 shadow-sm">
+                            <img src="/resources/TheGreatGatsby.jpg" alt="Book Cover" class="book-img">
+                            <div class="card-body">
+                                <span class="badge bg-secondary">Fiction</span>
+                                <span class="badge bg-success">Available</span>
+                                <h6 class="card-title">The Great Gatsby</h6>
+                                <p class="text-muted small">F. Scott Fitzgerald</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary btn-wide"><i class="bi bi-book"></i> Read</button>
+                                <button class="btn btn-sm btn-success btn-wide"><i class="bi bi-journal"></i> Journal</button>
+                                <button class="btn btn-sm btn-warning btn-icon"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger btn-icon"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>  
                     </div>                    
                 </div>    
 
@@ -340,16 +408,101 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script>
-        //Simple live search filter
-        document.getElementById("searchBox").addEventListener("keyup", function(){
-            let filter = this.value.toLowerCase();
-            let cards = document.querySelectorAll(".book-card");
+        
+        const searchBox = document.getElementById("searchBox");
+        const sortSelect = document.querySelector("select.from-select");
+        const checkboxes = document.querySelectorAll(".sidebar input[type=checkbox]");
+        const pagination = document.querySelector(".pagination");
+
+        let cards = Array.from(document.querySelectorAll(".book-card"));
+        const cardsPerPage = 6;
+        let currentPage = 1;
+
+        function applyFilters(){
+            let filterText = searchBox.value.toLowerCase();
+            let activateCategories = Array.from(checkboxes)
+                .filter(cb => cb.checked && (cb.nextSibling.textContent.trim() === "Fiction" || cb.nextSibling.textContent.trim() === "Non-Fiction" || cb.nextSibling.textContent.trim() === "Science"))
+                .map(cb => cb.nextSibling.textContent.trim());
+            let activeStatus = Array.from(checkboxes)
+                .filter(cb => cb.checked && (cb.nextSibling.textContent.trim() === "Available" || cb.nextSibling.textContent.trim() === "Unavailable"))
+                .map(cb => cb.nextSibling.textContent.trim());
 
             cards.forEach(card => {
                 let text = card.innerText.toLowerCase();
-                card.style.display = text.includes(filter) ? "" : "none";
+                let category = card.querySelector(".badge.bg-secondary")?.innerText;
+                let status = card.querySelector(".badge.bg-success, .badge.bg-danger")?.innerText;
+                
+                let matchesText = text.includes(filterText);
+                let matchesCategory = activateCategories.length? activateCategories.includes(category) : true;
+                let matchesStatus = activeStatus.length? activeStatus.includes(status) : true;
+                
+                card.style.display = (matchesText && matchesCategory && matchesStatus) ? "" : "none";
             });
-        });
+
+            paginate();
+        }
+
+        function applySorting(){
+            let option = sortSelect.value;
+            let grid = document.querySelector(".row.g-3");
+            let visibleCards = cards.filter(c => c.style.display != "none");
+
+            visibleCards.sort((a,b) => {
+                let aTitle = a.querySelector(".card-title").innerText.toLowerCase();
+                let bTitle = b.querySelector(".card-title").innerText.toLowerCase();
+                let aAuthor = a.querySelector(".text-muted").innerText.toLowerCase();
+                let bAuthor = b.querySelector(".text-muted").innerText.toLowerCase();
+                let aCategory = a.querySelector(".badge.bg-secondary")?.innerText.toLowerCase();
+                let bCategory = b.querySelector(".badge.bg-secondary")?.innerText.toLowerCase();
+                let aStatus = a.querySelector(".badge.bg-success, .badge.bg-danger")?.innerText.toLowerCase();
+                let bStatus = b.querySelector(".badge.bg-success, .badge.bg-danger")?.innerText.toLowerCase();
+
+                if(option === "Title") return aTitle.localCompare(bTitle);
+                if(option === "Author") return aAuthor.localCompare(bAuthor);
+                if(option === "Category") return aCategory.localCompare(bCategory);
+                if(option === "Availability") return aStatus.localCompare(bStatus);
+                return 0;
+            });
+            visibleCards.forEach(card => grid.appendChild(card.parentElement));
+            paginate();
+        }
+
+        function paginate(){
+            let visibleCards = cards.filter(c => c.style.display != "none");
+            let totalPages = Math.ceil(visibleCards.length / cardsPerPage);
+
+            visibleCards.forEach((card, i) => {
+                card.parentElement.style.display = (i >= (currentPage - 1) * cardsPerPage && i < currentPage * cardsPerPage) ? "" : "none";
+            });
+            pagination.innerHTML = "";
+
+            let prev = document.createElement("li");
+            prev.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
+            prev.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+            prev.onclick = e => { e.preventDefault(); if(currentPage > 1){ currentPage--; paginate(); } };
+            pagination.appendChild(prev);
+
+            for(let i=1; i<=totalPages; i++){
+                let li = document.createElement("li");
+                li.className = `page-item ${i === currentPage ? "active" : ""}`;
+                li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                li.onclick = e => { e.preventDefault(); currentPage = i; paginate(); };
+                pagination.appendChild(li);
+            }
+
+            let next = document.createElement("li");
+            next.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
+            next.innerHTML = `<a class="page-link" href="#">Next</a>`;
+            next.onclick = e => { e.preventDefault(); if(currentPage < totalPages){ currentPage++; paginate(); } };
+            pagination.appendChild(next);
+        }
+
+        searchBox.addEventListener("keyup", applyFilters);
+        sortSelect.addEventListener("change", applySorting);
+        checkboxes.forEach(cb => cb.addEventListener("change", applyFilters));
+
+        paginate();
+
     </script>
 
 </body>

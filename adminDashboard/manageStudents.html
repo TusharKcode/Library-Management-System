@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .student-card {
+            border-radius: 12px;
+            height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .student-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        .student-img {
+            height: 160px;
+            width: 100%;
+            object-fit: contain;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+        .card-body {
+            flex-grow: 1;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            background: #fff;
+            border: 0;
+            margin-top: auto;
+        }
+        .btn-wide {
+            height: 36px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        .btn-wide i {
+            margin-right: 5px;
+        }
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sidebar {
+            border-right: 1px solid #eee;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+     <!--Admin Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-2">
+        <div class="container-fluid">
+
+            <a class="navbar-brand fw-bold" href="/adminDashboard/adminDashboard.html">
+                <i class="bi bi-book-half me-1"></i> LMS Admin
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="adminNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!--Dashboard-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/adminDashboard/adminDashboard.html">
+                            <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <!--Books Dropdown-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="booksDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-book me-1"></i> Books
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="booksDropdown">
+                            <li><a class="dropdown-item" href="manageBooks.html"><i class="bi bi-plus-circle me-1"></i> Add/Manage Books</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-folder2-open me-1"></i> Categories</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person-lines-fill me-1"></i> Authors</a></li>
+                        </ul>
+                    </li>
+                    <!--Users Dropdown-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-people me-1"></i> Users
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="usersDropdown">
+                            <li><a class="dropdown-item" href="manageStudents.html"><i class="bi bi-person-badge me-1"></i> Manage Students</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person-check me-1"></i> Issued Books</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-exclamation-triangle me-1"></i> Defaulter List</a></li>
+                        </ul>
+                    </li>
+                    <!--Transactions Dropdown-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="transDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-people me-1"></i> Transactions
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="transDropdown">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-journal-plus me-1"></i> Issue Book</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-return-left me-1"></i> Return Books</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin me-1"></i> Fines</a></li>
+                        </ul>
+                    </li>
+
+                    <!--Reports-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-graph-up me-1"></i> Reports</a>
+                    </li>
+                </ul>
+                <!--Admin Info & Logout-->
+                <div class="d-flex align-items-center text-white">
+                    <img src="" alt="Avatar" class="rounded-circle me-2 border border-light" width="35" height="35">
+                    <span class="fw-semibold">Admin Name</span>
+                    <span class="mx-1">|</span>
+                    <span class="text-white-50">admin@example.com</span>
+                    <a href="/loginForm/loginForm.html" class="btn btn-outline-light btn-sm ms-3 px-3">
+                        <i class="bi bi-box-arrow-right me-1"></i> Logout
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <!--Main Container-->
+    <div class="container-fluid my-4">
+        <div class="row">
+            <!--SideBar Filters-->
+            <div class="col-md-3 sidebar">
+                <h6><i class="bi bi-funnel me-1"></i> Filters</h6>
+                <hr>
+                <strong>Course</strong>
+                <div>
+                    <input type="checkbox" class="form-check-input me-1"> Computer Science <br>
+                    <input type="checkbox" class="form-check-input me-1"> Commerce <br>
+                    <input type="checkbox" class="form-check-input me-1"> Arts <br>
+                </div>
+                <hr>
+                <strong>Year</strong>
+                <div>
+                    <input type="checkbox" class="form-check-input me-1"> 1st Year <br>
+                    <input type="checkbox" class="form-check-input me-1"> 2st Year <br>
+                    <input type="checkbox" class="form-check-input me-1"> 3st Year <br>
+                    <input type="checkbox" class="form-check-input me-1"> Final Year
+                </div>
+                <hr>
+                <strong>Year</strong>
+                <div>
+                    <input type="checkbox" class="form-check-input me-1"> Active <br>
+                    <input type="checkbox" class="form-check-input me-1"> Inactive
+                </div>
+            </div>
+
+            <!--Students Section-->
+            <div class="col-md-9">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <h4><i class="bi bi-people me-2"></i> Manage Students</h4> <br>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentsModal">
+                        <i class="bi bi-person-plus"></i> Add Students
+                    </button>
+                </div>
+
+                <!--Search & Sort-->
+                <div class="d-flex mb-3">
+                    <input type="text" class="form-control me-2" placeholder="Search by name, course, year...">
+                    <select class="form-select w-auto">
+                        <option selected disabled>Sort by</option>
+                        <option>Name</option>
+                        <option>Course</option>
+                        <option>Year</option>
+                        <option>Status</option>
+                    </select>
+                </div>
+
+                <!--Students Grid-->
+                <div class="row g-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card student-card shadow-sm h-100">
+                            <img src="/resources/Std1Img.png" alt="Student Photo" class="student-img">
+                            <div class="card-body">
+                                <span class="badge bg-primary">Computer Science</span>
+                                <span class="badge bg-success">Active</span>
+                                <h6 class="card-title mt-2">John Doe</h6>
+                                <p class="text-muted small">2nd Year</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-info btn-wide"><i class="bi bi-eye"></i> View</button>
+                                <button class="btn btn-sm btn-warning btn-icon"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger btn-icon"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled"><a class="page-link">Previous</a></li>
+                    <li class="page-item active"><a class="page-link">1</a></li>
+                    <li class="page-item"><a class="page-link">2</a></li>
+                    <li class="page-item"><a class="page-link">Next</a></li>
+                </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+
+        <!-- Add Student Modal -->
+    <div class="modal fade" id="addStudentModal" tabindex="-1">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-person-plus"></i> Add New Student</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Course</label><input type="text" class="form-control"></div>
+                <div class="mb-3"><label class="form-label">Year</label>
+                <select class="form-select">
+                    <option>1st Year</option>
+                    <option>2nd Year</option>
+                    <option>3rd Year</option>
+                    <option>Final Year</option>
+                </select>
+                </div>
+                <div class="mb-3"><label class="form-label">Status</label>
+                <select class="form-select">
+                    <option>Active</option>
+                    <option>Inactive</option>
+                </select>
+                </div>
+                <div class="mb-3"><label class="form-label">Profile Image</label><input type="file" class="form-control"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Student</button>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
